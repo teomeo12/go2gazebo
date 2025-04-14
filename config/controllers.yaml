@@ -1,4 +1,5 @@
-ros__parameters:
+controller_manager:
+ ros__parameters:
   joint_state_controller:
     type: joint_state_broadcaster/JointStateBroadcaster
     publish_rate: 50
