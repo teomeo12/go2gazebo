@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
@@ -36,10 +35,11 @@ def generate_launch_description():
             output='screen'
         ),
 
+        # This node correctly loads robot_description into gazebo_ros2_control
         Node(
             package='controller_manager',
             executable='ros2_control_node',
-            parameters=[controllers_path, {'use_sim_time': True}],
+            parameters=[{'robot_description': robot_description}, controllers_path, {'use_sim_time': True}],
             output='screen'
         ),
 
