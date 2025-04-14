@@ -1,8 +1,7 @@
-go2_gazebo:
-    # Publish all joint states -----------------------------------
-    joint_state_controller:
-        type: joint_state_controller/JointStateController
-        publish_rate: 1000  
+ros__parameters:
+  joint_state_controller:
+    type: joint_state_broadcaster/JointStateBroadcaster
+    publish_rate: 50
 
     # FL Controllers ---------------------------------------
     FL_hip_controller:

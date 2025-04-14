@@ -15,7 +15,7 @@ find_package(rviz_default_plugins REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 install(
-  DIRECTORY config dae launch urdf
+  DIRECTORY config meshes launch urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
