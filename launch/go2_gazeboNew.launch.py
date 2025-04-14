@@ -4,6 +4,8 @@ import os
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
+from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
@@ -12,8 +14,7 @@ def generate_launch_description():
     world_path = os.path.join(pkg_go2, 'worlds', 'empty.world')
     controllers_path = os.path.join(pkg_go2, 'config', 'controllers.yaml')
 
-    with open(urdf_path, 'r') as urdf_file:
-        robot_description = urdf_file.read()
+    robot_description = ParameterValue(Command(['cat ', urdf_path]), value_type=str)
 
     return LaunchDescription([
         ExecuteProcess(
