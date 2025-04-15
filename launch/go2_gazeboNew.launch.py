@@ -13,7 +13,11 @@ def generate_launch_description():
     world_path = os.path.join(pkg_go2, 'worlds', 'empty.world')
     controllers_path = os.path.join(pkg_go2, 'config', 'controllers.yaml')
 
-    #robot_description = ParameterValue(Command(['cat ', urdf_path]), value_type=str)
+    print(f"URDF path: {urdf_path}")
+    robot_description = ParameterValue(
+    Command(['cat', urdf_path]),
+    value_type=str
+)  
 
     return LaunchDescription([
         ExecuteProcess(
@@ -24,7 +28,7 @@ def generate_launch_description():
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
-            parameters=[{'robot_description': open(urdf_path).read()}],
+            parameters=[{'robot_description': robot_description}],
             output='screen'
         ),
 
@@ -39,7 +43,7 @@ def generate_launch_description():
         Node(
             package='controller_manager',
             executable='ros2_control_node',
-            parameters=[controllers_path],
+            parameters=[controllers_path, {'robot_description': robot_description}],
             output='screen'
         ),
 
