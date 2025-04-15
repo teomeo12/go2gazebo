@@ -10,14 +10,16 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     pkg_go2 = get_package_share_directory('go2gazebo')
     urdf_path = os.path.join(pkg_go2, 'urdf', 'go2_description.urdf')
-    world_path = os.path.join(pkg_go2, 'worlds', 'empty.world')
+    world_path = os.path.join(pkg_go2, 'world', 'empty.world')
     controllers_path = os.path.join(pkg_go2, 'config', 'controllers.yaml')
 
     print(f"URDF path: {urdf_path}")
-    robot_description = ParameterValue(
-    Command(['cat', urdf_path]),
-    value_type=str
-)  
+    # robot_description = ParameterValue(
+    # Command(['cat', urdf_path]),
+    # value_type=str
+    # )  
+    with open(urdf_path, 'r') as infp:
+        robot_description = infp.read()
 
     return LaunchDescription([
         ExecuteProcess(
