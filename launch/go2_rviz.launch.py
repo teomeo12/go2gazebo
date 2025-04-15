@@ -6,11 +6,11 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     # Define paths
-    go2_description_share = get_package_share_directory('go2_description')
-    urdf_file = os.path.join(go2_description_share, 'urdf', 'go2_description.urdf')
+    go2_description_share = get_package_share_directory('go2gazebo')
+    urdf_file = os.path.join(go2_description_share, 'urdf', 'go2_descriptionOriginal.urdf')
     rviz_config_file = os.path.join(go2_description_share, 'config', 'check_joint.rviz')
 
-    # Read the URDF file
+    # Read the URDF filer
     with open(urdf_file, 'r') as infp:
         robot_description_content = infp.read()
 
